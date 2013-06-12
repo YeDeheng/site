@@ -18,7 +18,7 @@ For the symlinking problem, I can just change the code from symlinking to copyin
 
 Grepping through the code, I can see that `render-indices` produces the indices, e.g. `1.html`, etc., and symlinking `1.html` to `index.html`. This is where I should make the modification. I added another argument to `render-indices` to tell the code to make the symlink or not.
 
-```common-lisp
+```commonlisp
 ;;;; in src/coleslaw.lisp
 ; [...]
       (when (probe-file dir)
@@ -49,7 +49,7 @@ Grepping through the code, I can see that `render-indices` produces the indices,
 ### Domain ###
 Previously, my ad-hoc solution was to find the first forward-slash in the domain string and substring the domain string from after the second forward-slash. Here's the previous code.
 
-```common-lisp
+```commonlisp
 (defgeneric deploy (staging)
   (((
         ; [...]
@@ -69,7 +69,7 @@ Previously, my ad-hoc solution was to find the first forward-slash in the domain
 
 Now, I can instead use the [puri](http://puri.b9.com/) library to parse the URL and extract only the domain. Here's the new code using `puri`.
 
-```common-lisp
+```commonlisp
 (defgeneric deploy (staging)
   (((
         ; [...]
@@ -89,7 +89,7 @@ Now, I can instead use the [puri](http://puri.b9.com/) library to parse the URL 
 
 Of course, I need to add puri as a dependency to coleslaw.
 
-```common-lisp
+```commonlisp
 ;;;; in coleslaw.asd
                :inferior-shell
                :cl-fad

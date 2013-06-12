@@ -31,7 +31,7 @@ wget -c https://raw.github.com/redline6561/coleslaw/master/examples/single-site.
 
 * The settings must be edited accordingly. I find the naming a bit confusing, so I have put some comment below for clarification.
 
-```common-lisp
+```commonlisp
 (:author "Example Setter"
  :deploy "/path/to/deploy" ; this is where coleslaw writes its output
  :domain "http://blog.example.com"
@@ -92,7 +92,7 @@ After forking the code and cloning it to my machine, I need to setup Quicklisp's
 
 Since I have generated the posts using coleslaw, Quicklisp must have pulled the code from its repository. For safety, I uninstall Quicklisp's coleslaw.
 
-```common-lisp
+```commonlisp
 ;; start sbcl and load Quicklisp's setup.lisp
 (use-package :ql-dist)
 (uninstall (release "coleslaw"))
@@ -102,7 +102,7 @@ Since I have generated the posts using coleslaw, Quicklisp must have pulled the 
 ## Hack on it ##
 I add a property to class `blog` in order to capture user's intent to integrate with Github's pages.
 
-```common-lisp
+```commonlisp
 ; in src/config.lisp
 (defclass blog ()
   (
@@ -114,7 +114,7 @@ I add a property to class `blog` in order to capture user's intent to integrate 
 
 And then the code to actually generate the `CNAME` file
 
-```common-lisp
+```commonlisp
 (defgeneric deploy (staging)
   (((
         ; [...]
