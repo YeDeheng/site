@@ -26,7 +26,8 @@ git --bare init
 * Get coleslaw's settings file
 
 ```bash
-wget -c https://raw.github.com/redline6561/coleslaw/master/examples/single-site.coleslawrc -O ~/.coleslawrc
+wget -c https://raw.github.com/redline6561/coleslaw/master/examples/single-site.coleslawrc \
+     -O ~/.coleslawrc
 ```
 
 * The settings must be edited accordingly. I find the naming a bit confusing, so I have put some comment below for clarification.
@@ -52,7 +53,8 @@ wget -c https://raw.github.com/redline6561/coleslaw/master/examples/single-site.
 * Get `post-receive` hook script and edit the file according to the instructions inside
 
 ```bash
-wget -c https://raw.github.com/redline6561/coleslaw/master/examples/example.post-receive -O /path/to/repo/hooks/post-receive
+wget -c https://raw.github.com/redline6561/coleslaw/master/examples/example.post-receive \
+     -O /path/to/repo/hooks/post-receive
 # edit the file
 ```
 
@@ -96,7 +98,8 @@ Since I have generated the posts using coleslaw, Quicklisp must have pulled the 
 ;; start sbcl and load Quicklisp's setup.lisp
 (use-package :ql-dist)
 (uninstall (release "coleslaw"))
-; instructions gotten from https://groups.google.com/forum/?fromgroups=#!topic/quicklisp/CvB3mwsL7l4
+; instructions gotten from
+;   https://groups.google.com/forum/?fromgroups=#!topic/quicklisp/CvB3mwsL7l4
 ```
 
 ## Hack on it ##

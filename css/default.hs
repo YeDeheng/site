@@ -94,7 +94,7 @@ main = putCss $
        body ?
          do fontSize        (px 16)
             margin          (px 0) auto (px 0) auto
-            width           (px 600)
+            width           (px 960)
        Clay.div # "#header" ?
          do marginBottom    (px 30)
             padding         (px 12) (px 0) (px 12) (px 0)
