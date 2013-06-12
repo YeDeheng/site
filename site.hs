@@ -21,12 +21,6 @@ main = hakyll $ do
                 >>= withItemBody (unixFilter "runghc" [])
                 >>= return . fmap compressCss
 
-    {-match (fromList ["about.rst", "contact.markdown"]) $ do
-        route   $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
-            >>= relativizeUrls-}
-
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
@@ -52,7 +46,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             let indexCtx = field "posts" $ \_ ->
-                                postList $ fmap (take 3) . recentFirst
+                                postList $ fmap (take 5) . recentFirst
 
             getResourceBody
                 >>= applyAsTemplate indexCtx

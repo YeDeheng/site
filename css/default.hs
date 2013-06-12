@@ -7,17 +7,16 @@ import Clay (
             , Color
             , a
             , auto
-            , black
+            , backgroundColor
             , body
             , bold
-            , borderBottom
+            , border
+            , borderColor
             , borderTop
             , code
             , color
             , div
             , end
-            , float
-            , floatLeft
             , fontFamily
             , fontSize
             , fontSize
@@ -25,6 +24,13 @@ import Clay (
             , fontWeight
             , h1
             , h2
+            , h3
+            , h4
+            , h5
+            , h6
+            , height
+            , hr
+            , html
             , italic
             , margin
             , marginBottom
@@ -45,13 +51,6 @@ import Clay (
             , textTransform
             , uppercase
             , width
-            , html
-            , backgroundColor
-            , h3
-            , h4
-            , h5
-            , h6
-            , borderColor
 
             )
 import Data.Monoid ((<>))
@@ -97,14 +96,20 @@ main = putCss $
             margin          (px 0) auto (px 0) auto
             width           (px 600)
        Clay.div # "#header" ?
-         do borderBottom    solid (px 2) black
-            marginBottom    (px 30)
+         do marginBottom    (px 30)
             padding         (px 12) (px 0) (px 12) (px 0)
+       Clay.div # "#header" Clay.** hr ?
+         do border          solid (px 0) sBase03
+            color           sBase03
+            backgroundColor sBase03
+            height          (px 2)
        Clay.div # "#logo" Clay.** a ?
-         do float           floatLeft
-            fontSize        (px 18)
+         do fontSize        (px 20)
             fontWeight      bold
             textDecoration  none
+       Clay.div # "#logo" Clay.** Clay.span ?
+         do fontSize        (px 15)
+            fontStyle       italic
        Clay.div # "#header" Clay.** "#navigation" ?
          do textAlign       end
        Clay.div # "#header" Clay.** "#navigation" Clay.** a ?
@@ -114,7 +119,7 @@ main = putCss $
             textDecoration  none
             textTransform   uppercase
        Clay.div # "#footer" ?
-         do borderTop       solid (px 2) black
+         do borderTop       solid (px 2) sBase03
             color           sBase1
             fontSize        (px 12)
             marginTop       (px 30)
