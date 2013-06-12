@@ -104,7 +104,8 @@ main = putCss $
             backgroundColor sBase03
             height          (px 2)
        Clay.div # "#logo" Clay.** a ?
-         do fontSize        (px 20)
+         do color           sBlue
+            fontSize        (px 20)
             fontWeight      bold
             textDecoration  none
        Clay.div # "#logo" Clay.** Clay.span ?
@@ -113,7 +114,8 @@ main = putCss $
        Clay.div # "#header" Clay.** "#navigation" ?
          do textAlign       end
        Clay.div # "#header" Clay.** "#navigation" Clay.** a ?
-         do fontSize        (px 18)
+         do color           sBlue
+            fontSize        (px 18)
             fontWeight      bold
             marginLeft      (px 12)
             textDecoration  none
