@@ -34,7 +34,7 @@ Grepping through the code, I can see that `render-indices` produces the indices,
                               :title "Recent Posts")))
 
 (defun render-indices (make-symlink-p)
-  "Render the indices to view content in groups of size N, by month, and by tag
+  "Render the indices to view content in groups of size N, by month, and by tag"
   (let ((results (by-date (hash-table-values *content*))))
     (dolist (tag (all-tags))
 ; [...]
