@@ -121,23 +121,20 @@ main = putCss $
             margin          (px 0) auto (px 0) auto
        Clay.div # "#logo" ?
          do float           floatLeft
-       Clay.div # "#logo" Clay.** a ?
-         do color           sBase2
-            fontSize        (px 20)
-            fontWeight      bold
-            textDecoration  none
        Clay.div # "#logo" Clay.** Clay.span ?
          do color           sBase2
             fontSize        (px 15)
             fontStyle       italic
        Clay.div # "#header" Clay.** "#navigation" ?
          do textAlign       end
-       Clay.div # "#header" Clay.** "#navigation" Clay.** a ?
+       Clay.div # "#header" Clay.** a ?
          do color           sBase2
             fontSize        (px 18)
             fontWeight      bold
             marginLeft      (px 12)
             textDecoration  none
+       Clay.div # "#logo" Clay.** a ?
+         do fontSize        (px 20)
        Clay.div # "#container" ?
          do width           pageWidth
             margin          (px 0) auto (px 0) auto
