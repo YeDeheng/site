@@ -113,7 +113,7 @@ main = putCss $
          do fontSize        (px 16)
             margin          (px 0) auto (px 0) auto
        Clay.div # "#header-strip" ?
-         do padding         (px 12) (px 0) (px 12) (px 0)
+         do padding         (px 10) (px 0) (px 10) (px 0)
             backgroundColor sBlue
             overflow        auto
        Clay.div # "#header" ?
@@ -123,20 +123,20 @@ main = putCss $
          do float           floatLeft
        Clay.div # "#header" Clay.** "#logo" Clay.** a ?
          do color           sBase2
-            fontSize        (px 20)
+            fontSize        (px 24)
             fontWeight      bold
             textDecoration  none
        Clay.div # "#logo" Clay.** Clay.span ?
          do color           sBase2
-            fontSize        (px 15)
+            fontSize        (px 16)
             fontStyle       italic
        Clay.div # "#header" Clay.** "#navigation" ?
          do textAlign       end
        Clay.div # "#header" Clay.** "#navigation" Clay.** a ?
          do color           sBase2
-            fontSize        (px 18)
+            fontSize        (px 22)
             fontWeight      bold
-            marginLeft      (px 12)
+            marginLeft      (px 18)
             textDecoration  none
        Clay.div # "#container" ?
          do width           pageWidth
