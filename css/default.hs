@@ -123,12 +123,12 @@ main = putCss $
          do float           floatLeft
        Clay.div # "#logo" Clay.** a ?
          do color           sBase2
-            fontSize        (px 18)
+            fontSize        (px 20)
             fontWeight      bold
             textDecoration  none
        Clay.div # "#logo" Clay.** Clay.span ?
          do color           sBase2
-            fontSize        (px 13)
+            fontSize        (px 15)
             fontStyle       italic
        Clay.div # "#header" Clay.** "#navigation" ?
          do textAlign       end
