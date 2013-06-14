@@ -4,7 +4,9 @@ import Clay (
             (#)
             , (**)
             , (?)
+            , Abs
             , Color
+            , Size
             , a
             , auto
             , backgroundColor
@@ -12,11 +14,12 @@ import Clay (
             , bold
             , border
             , borderColor
-            , borderTop
             , code
             , color
             , div
             , end
+            , float
+            , floatLeft
             , fontFamily
             , fontSize
             , fontSize
@@ -28,22 +31,23 @@ import Clay (
             , h4
             , h5
             , h6
-            , height
-            , hr
             , html
             , italic
+            , lineHeight
             , margin
             , marginBottom
             , marginLeft
             , marginTop
             , monospace
             , none
+            , overflow
             , padding
             , parse
+            , pct
             , pre
             , putCss
             , px
-            , solid
+            , sansSerif
             , span
             , table
             , textAlign
@@ -77,56 +81,86 @@ sBlue       = parse "#268bd2"
 sCyan       = parse "#2aa198"
 sGreen      = parse "#859900"
 
+pageWidth, vMargin :: Size Abs
+pageWidth = px 960
+vMargin = px 20
+
 main :: IO ()
 main = putCss $
     do html ?
          do backgroundColor sBase3
             color           sBase00
             "*" ?
-              do color          sBase00
+              do color              sBase00
             h1 <> h2 <> h3 <> h4 <> h5 <> h6 ?
-              do color          sBase01
-                 borderColor    sBase00
-            a <> a # ":active" ?
-              do color          sBlue
-            a # ":visited" ?
-              do color          sBase01
+              do color              sBase01
+                 borderColor        sBase00
+                 fontWeight         bold
+            a <> a # ":active" <> a # ":visited" ?
+              do color              (parse "#607890")
+              -- do color          sBase01
+            a # ":hover" ?
+              do color              (parse "#036")
+            h1 # "#pagetitle" <> h1 # ":first-of-type" ?
+              do fontSize           (pct 300)
+                 marginTop          0
+                 marginBottom       vMargin
+                 lineHeight         (pct 100)
+            -- h2 # "#pagesubtitle" <> h2 # ":first-of-type" ?
+            --   do fontSize           (pct 200)
+            --      textTransform      none
+            --      color              sBase01
+            --      marginTop          vMargin
+            --      -- marginBottom       (fmap (*2) vMargin)
+            --      lineHeight         (pct 100)
+            fontFamily          ["Helvetica", "Arial"] [sansSerif]
        body ?
          do fontSize        (px 16)
             margin          (px 0) auto (px 0) auto
-            width           (px 960)
+            -- width           (px 960)
+       Clay.div # "#header-strip" ?
+         do padding         (px 12) (px 0) (px 12) (px 0)
+            backgroundColor sBlue
+            overflow        auto
        Clay.div # "#header" ?
-         do marginBottom    (px 30)
-            padding         (px 12) (px 0) (px 12) (px 0)
-       Clay.div # "#header" Clay.** hr ?
-         do border          solid (px 0) sBase03
-            color           sBase03
-            backgroundColor sBase03
-            height          (px 2)
+         do width           pageWidth
+            margin          (px 0) auto (px 0) auto
+       Clay.div # "#logo" ?
+         do float           floatLeft
        Clay.div # "#logo" Clay.** a ?
-         do color           sBlue
+         do color           sBase2
             fontSize        (px 20)
             fontWeight      bold
             textDecoration  none
        Clay.div # "#logo" Clay.** Clay.span ?
-         do fontSize        (px 15)
+         do color           sBase2
+            fontSize        (px 15)
             fontStyle       italic
        Clay.div # "#header" Clay.** "#navigation" ?
          do textAlign       end
        Clay.div # "#header" Clay.** "#navigation" Clay.** a ?
-         do color           sBlue
+         do color           sBase2
             fontSize        (px 18)
             fontWeight      bold
             marginLeft      (px 12)
             textDecoration  none
             textTransform   uppercase
-       Clay.div # "#footer" ?
-         do borderTop       solid (px 2) sBase03
-            color           sBase1
-            fontSize        (px 12)
-            marginTop       (px 30)
+       Clay.div # "#container" ?
+         do width           pageWidth
+            margin          (px 0) auto (px 0) auto
+            padding         (px 30) (px 0) (px 30) (px 0)
+       Clay.div # "#content" ?
+         do padding         (px 0) (px 10) (px 0) (px 10)
+       Clay.div # "#footer-strip" ?
+         do overflow        auto
             padding         (px 12) (px 0) (px 12) (px 0)
+            -- backgroundColor sBlue
+       Clay.div # "#footer" ?
+         do color           sBase1
+            fontSize        (px 12)
             textAlign       end
+            width           pageWidth
+            margin          (px 0) auto (px 0) auto
        h1 ?
          do fontSize        (px 24)
        h2 ?
@@ -136,7 +170,10 @@ main = putCss $
             fontSize        (px 14)
             fontStyle       italic
        pre # ".sourceCode" <> table # ".sourceCode" <> table # ".sourceCode" Clay.** "*" ?
-         do fontFamily      [] [monospace]
+         do fontFamily      [ "Monaco", "Inconsolata", "DejaVu Sans Mono"
+                            , "Courier New", "Courier"
+                            ]
+                            [monospace]
        code # ".sourceCode" Clay.** Clay.span # ".kw" ?
          do color           sYellow
             fontWeight      bold
