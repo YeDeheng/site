@@ -12,7 +12,6 @@ import Clay (
             , backgroundColor
             , body
             , bold
-            , border
             , borderColor
             , code
             , color
@@ -52,8 +51,6 @@ import Clay (
             , table
             , textAlign
             , textDecoration
-            , textTransform
-            , uppercase
             , width
 
             )
@@ -98,7 +95,6 @@ main = putCss $
                  fontWeight         bold
             a <> a # ":active" <> a # ":visited" ?
               do color              (parse "#607890")
-              -- do color          sBase01
             a # ":hover" ?
               do color              (parse "#036")
             h1 # "#pagetitle" <> h1 # ":first-of-type" ?
@@ -109,7 +105,6 @@ main = putCss $
             -- h2 # "#pagesubtitle" <> h2 # ":first-of-type" ?
             --   do fontSize           (pct 200)
             --      textTransform      none
-            --      color              sBase01
             --      marginTop          vMargin
             --      -- marginBottom       (fmap (*2) vMargin)
             --      lineHeight         (pct 100)
@@ -117,7 +112,6 @@ main = putCss $
        body ?
          do fontSize        (px 16)
             margin          (px 0) auto (px 0) auto
-            -- width           (px 960)
        Clay.div # "#header-strip" ?
          do padding         (px 12) (px 0) (px 12) (px 0)
             backgroundColor sBlue
@@ -144,7 +138,6 @@ main = putCss $
             fontWeight      bold
             marginLeft      (px 12)
             textDecoration  none
-            textTransform   uppercase
        Clay.div # "#container" ?
          do width           pageWidth
             margin          (px 0) auto (px 0) auto
