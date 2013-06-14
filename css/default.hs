@@ -86,12 +86,12 @@ main :: IO ()
 main = putCss $
     do html ?
          do backgroundColor sBase3
-            color           sBase00
+            color           sBase01
             "*" ?
-              do color              sBase00
+              do color              sBase01
             h1 <> h2 <> h3 <> h4 <> h5 <> h6 ?
               do color              sBase01
-                 borderColor        sBase00
+                 borderColor        sBase01
                  fontWeight         bold
             a <> a # ":active" <> a # ":visited" ?
               do color              (parse "#607890")
