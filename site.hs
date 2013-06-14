@@ -35,12 +35,22 @@ main = hakyll $ do
                     field "posts" (\_ -> postList recentFirst) `mappend`
                     constField "title" "Archives"              `mappend`
                     defaultContext
-
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
+    create ["sitemap.xml"] $ do
+        route idRoute
+        compile $ do
+            let sitemapCtx =
+                    field "posts" (\_ ->
+                        genericPostList "templates/sitemap-item.xml" "%Y-%m-%d"
+                                        recentFirst)
+                    `mappend` defaultContext
+            makeItem ""
+                >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
+                >>= relativizeUrls
 
     match "index.html" $ do
         route idRoute
@@ -57,16 +67,26 @@ main = hakyll $ do
 
 
 --------------------------------------------------------------------------------
-postCtx :: Context String
-postCtx =
-    dateField "date" "%B %e, %Y" `mappend`
+genericPostCtx :: String -> Context String
+genericPostCtx dateFormat =
+    dateField "date" dateFormat `mappend`
     defaultContext
 
 
 --------------------------------------------------------------------------------
-postList :: ([Item String] -> Compiler [Item String]) -> Compiler String
-postList sortFilter = do
+genericPostList :: Identifier -> String -> ([Item String] -> Compiler [Item String]) -> Compiler String
+genericPostList templatePath dateFormat sortFilter = do
     posts   <- sortFilter =<< loadAll "posts/*"
-    itemTpl <- loadBody "templates/post-item.html"
-    list    <- applyTemplateList itemTpl postCtx posts
+    itemTpl <- loadBody templatePath
+    list    <- applyTemplateList itemTpl (genericPostCtx dateFormat) posts
     return list
+
+
+--------------------------------------------------------------------------------
+postList :: ([Item String] -> Compiler [Item String]) -> Compiler String
+postList = genericPostList "templates/post-item.html" "%B %e, %Y"
+
+
+--------------------------------------------------------------------------------
+postCtx :: Context String
+postCtx = genericPostCtx "%B %e, %Y"
