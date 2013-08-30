@@ -70,7 +70,7 @@ The `eval` function expects an already parsed expression, so the above `2 + 2` w
 Here are some strange notations the above Rust code has.
 
 * The `enum` block declares that an `Exp` can be either a `Number` with the accompanying integer value or a `Plus` between two `Exp`, etc. but not two or more thing at the same time; the very definition of a sum type. This declaration also embodies the product type, as each operator holds two different `Exp`s.
-* The tilda (`~`) before each `Exp` means that it's a unique pointer to an `Exp`. An owned pointer cannot be pointed to by two variables at the same time. When you assign the pointer to another variable, it will be moved to the new variable and the old one is no longer usable, unless you assign it to another unique pointer.
+* The tilda (`~`) before each `Exp` means that it's an owned pointer to an `Exp`. An owned pointer cannot be pointed to by two variables at the same time. When you assign the pointer to another variable, it will be moved to the new variable and the old one is no longer usable, unless you assign it to another one.
 * The ampersand (`&`) in the argument of eval means it's a borrowed pointer to an `Exp`. I won't delve into what a borrowed pointer is, but only say that a unique pointer can be used in place of a borrowed pointer, so you can write something like `eval(~Number(2))` and the compiler will happily generate the call for you.
 
 The first thing you might notice is the Rust version of the code is more concise than the C version. An `enum` in Rust is like a `struct`, `enum` and `union` in C combined, so you don't have to think about as many features of the language at the same time, and writing out as much code to achieve the same result in Rust.
