@@ -5,7 +5,7 @@ tags: rust, pattern maching, algebraic type
 ---
 This post is about less-talked-about features of Rust, namely Algebraic Types and Pattern Matching, that I find very interesting and for which I have chosen Rust.
 
-Let's say you have to build an arithmetic calculator for evaluating expessions like `2 + 2`. How would you do that? To simplify the problem a bit, let's say the calculator only deals with integers and four operators, plus, minus, multiplication and division.
+Let's say you have to build an arithmetic calculator for evaluating expessions like `2 + 2`. How would you do that? To simplify the problem a bit, let's say the calculator only deals with integers and four operators, i.e. plus, minus, multiplication and division.
 
 In C, you might write something like this.
 
@@ -39,7 +39,7 @@ int eval(struct Exp* exp) {
 }
 ```
 
-The complicated looking `struct` declaration is what's called a tagged union, where the enum `type` is used to figure out that the union `val` is holding. This is the C version of one type of Algebraic Types, the [sum type](http://en.wikipedia.org/wiki/Sum_type). One other type of Algebraic Types is to use `struct` to hold multiple types together, which allows the structure to hold even more than each type alone; this one is called the [product type](Ahttp://en.wikipedia.org/wiki/Product_type).
+The complicated looking `struct` declaration is what's called a tagged union, where the enum `type` is used to figure out that the union `val` is holding. This is the C version of one type of Algebraic Types, the [sum type](http://en.wikipedia.org/wiki/Sum_type). Another type of Algebraic Types is to use `struct` to hold multiple types together, which allows the structure to hold even more than each type alone; this one is called the [product type](Ahttp://en.wikipedia.org/wiki/Product_type).
 
 An intuitive way to think of the two types is that for sum type, the variable of that type can only be of one constituent type at a time, so the total range of values that type can hold is the sum of the ranges of the types. On the other hand, for the product type, for each field in the structure, it can hold any value of that type at any time, so the possible range of values of the structure is the product of each of its field's range of value.
 
@@ -55,7 +55,7 @@ enum Exp {
 }
 
 fn eval(exp: &Exp) -> int {
-    match exp {
+    match *exp {
         Number(i) => i,
         Plus(a, b) => eval(a) + eval(b),
         Minus(a, b) => eval(a) - eval(b),
