@@ -30,11 +30,11 @@ main = hakyll $ do
                 >>= return . fmap compressCss
 
     match "posts/*" $ do
-        route $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
-            >>= relativizeUrls
+        route     $ setExtension "html"
+        compile   $ pandocCompiler
+                >>= loadAndApplyTemplate "templates/post.html"    postCtx
+                >>= loadAndApplyTemplate "templates/default.html" postCtx
+                >>= relativizeUrls
 
     create ["archive.html"] $ do
         route idRoute
