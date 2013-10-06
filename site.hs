@@ -15,6 +15,10 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
+    match "report.tex" $ do
+        route $ setExtension "html"
+        compile pandocCompiler
+
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
