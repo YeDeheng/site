@@ -20,7 +20,7 @@ main = hakyll $ do
         compile   $ getResourceLBS
                 >>= withItemBody (unixFilterLBS "pdflatex" [])
                 -- hack, since pdflatex only output to file
-                >>= withItemBody (unixFilterLBS "cat" ["report.pdf"])
+                >>= withItemBody (unixFilterLBS "cat" ["texput.pdf"])
 
     match "images/*" $ do
         route   idRoute
