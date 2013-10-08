@@ -9,6 +9,8 @@ cabal-dev
 *.chi
 *.chs.h
 .virthualenv
+report.synctex.gz
+report.tex
 report.aux
 report.log
 report.pdf
