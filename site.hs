@@ -16,8 +16,11 @@ main = hakyll $ do
         compile copyFileCompiler
 
     match "report.tex" $ do
-        route $ setExtension "html"
-        compile pandocCompiler
+        route     $ setExtension "pdf"
+        compile   $ getResourceLBS
+                >>= withItemBody (unixFilterLBS "pdflatex" [])
+                -- hack, since pdflatex only output to file
+                >>= withItemBody (unixFilterLBS "cat" ["report.pdf"])
 
     match "images/*" $ do
         route   idRoute
