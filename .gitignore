@@ -9,3 +9,9 @@ cabal-dev
 *.chi
 *.chs.h
 .virthualenv
+report.aux
+report.log
+report.pdf
+texput.aux
+texput.log
+texput.pdf
